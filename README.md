@@ -1,113 +1,62 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v2
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
-
-# Serverless Framework Node HTTP API on AWS
-
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
-
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
-
-## Usage
-
-### Deployment
-
-```
-$ serverless deploy
-```
-
-After deploying, you should see output similar to:
-
-```bash
-Serverless: Packaging service...
-Serverless: Excluding development dependencies...
-Serverless: Creating Stack...
-Serverless: Checking Stack create progress...
-........
-Serverless: Stack create finished...
-Serverless: Uploading CloudFormation file to S3...
-Serverless: Uploading artifacts...
-Serverless: Uploading service aws-node-http-api.zip file to S3 (711.23 KB)...
-Serverless: Validating template...
-Serverless: Updating Stack...
-Serverless: Checking Stack update progress...
-.................................
-Serverless: Stack update finished...
-Service Information
-service: serverless-http-api
-stage: dev
-region: us-east-1
-stack: serverless-http-api-dev
-resources: 12
-api keys:
-  None
-endpoints:
-  ANY - https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
-functions:
-  api: serverless-http-api-dev-hello
-layers:
-  None
-```
-
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [http event docs](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
-
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
-```
-
-Which should result in response similar to the following (removed `input` content for brevity):
-
-```json
-{
-  "message": "Go Serverless v2.0! Your function executed successfully!",
-  "input": {
-    ...
-  }
-}
-```
-
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-  "statusCode": 200,
-  "body": "{\n  \"message\": \"Go Serverless v2.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
+# INFORMACIÓN GENERAL
+GITHUB Repositorio donde se encuentra el proyecto git@github.com:hjonathan/aws-nodejs.git
+# SERVERLESS 
+- Se utilizó serverless, para desplegar
+   Lambda Functions     
+   API Gateways      
+   Creación de colecciones en DynamoDB
 
 
-Alternatively, it is also possible to emulate API Gateway and Lambda locally by using `serverless-offline` plugin. In order to do that, execute the following command:
+# INSTALACIÓN Y CONFIGURACIÓN AWS-CLI1. 
 
-```bash
-serverless plugin install -n serverless-offline
-```
+## 1. Tener instalado aws-cli previamente, para más información :https://docs.aws.amazon.com/es_es/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions
 
-It will add the `serverless-offline` plugin to `devDependencies` in `package.json` file as well as will add it to `plugins` in `serverless.yml`.
+## 2. Configurar en AWS-CLI : Access key y Secret access key.- En consola ejecuta    >>aws configure
 
-After installation, you can start local emulation with:
+## 3. Llena los datos con las llaves provistas o crea unas nuevas 
+AWS Access Key ID [None]: AKIAROI2OMOSJVX5BLHQAWS 
+Secret Access Key [None]: E9ibARxtmzOxSXq97WqOqSqG+tg2VVa8/IR5XImUDefault 
+region name [None]: us-west-2
+Default output format [None]: 
 
-```
-serverless offline
-```
+para más información 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
-To learn more about the capabilities of `serverless-offline`, please refer to its [GitHub repository](https://github.com/dherault/serverless-offline).
+# INSTALACIÓN SERVERLESS
+## 1. En consola ejecuta
+ >>npm install -g serverless
+
+para más informacion : https://www.serverless.com/framework/docs/getting-started
+
+
+# INSTALACION PRUEBA TÉCNICA
+## 1. Descargar repositorio de proyecto en una carpeta local  >>git clone git@github.com:hjonathan/aws-nodejs.git
+## 2. Ingresar en carpeta de proyecto  >>cd aws-nodejs
+## 3.  Ejecutar npm  >>npm install
+## 4.  Para pruebas locales ejecutar   >>serverless offline
+## 5.  Para pruebas en AWS  >>serverless deploy --verbose
+
+
+# LIVE DEMO AWS
+Nota importante:
+Se creó un LAYER relacionado a los lambda functions para poder importar la libreria zod, el comprimido se encuentra en: https://drive.google.com/file/d/1HWzhhxtrr3TkCmd8FHIg6jamtYv5E_8h/view?usp=sharing
+
+
+## 1. Para pruebas reales se desplegaron los endpoints y lambda functions
+
+Endpoints:
+  POST - https://19njwt5xjh.execute-api.us-west-2.amazonaws.com/tokens
+  GET - https://19njwt5xjh.execute-api.us-west-2.amazonaws.com/token/{token}
+Functions:
+  tokens: node-aws-lambda-crud-dev-tokens 
+  getToken: node-aws-lambda-crud-dev-getToken
+
+
+## 2. Crear token POST - https://19njwt5xjh.execute-api.us-west-2.amazonaws.com/tokens Puede usar postman o algun cliente para este proposito- Cargar datos de prueba
+- No olvidar el Bearer Token 
+
+
+
+## 3. Obtener token GET - https://19njwt5xjh.execute-api.us-west-2.amazonaws.com/token/{token}
+
+ 
